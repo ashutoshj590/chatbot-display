@@ -1,0 +1,33 @@
+<div class="chat-container">
+  <div class="chat-box" id="chatBox">
+    <div *ngFor="let message of messages">
+      <div *ngIf="message.sender === 'user'" class="chat-message user-message">
+        {{ message.text }}
+      </div>
+      <div *ngIf="message.sender === 'bot'" class="chat-message bot-message">
+        {{ message.text }}
+      </div>
+    </div>
+
+    <!-- Show three dots animation when waiting for response -->
+    <div *ngIf="isTyping" class="three-dots">
+      <span class="dot"></span>
+      <span class="dot"></span>
+      <span class="dot"></span>
+    </div>
+  </div>
+  
+
+  <div class="chat-input">
+    <input
+      type="text"
+      [(ngModel)]="userMessage"
+      (keyup.enter)="sendMessage()"
+      placeholder="Type a message..."
+      autofocus
+    />
+    <button (click)="sendMessage()">Send</button>
+  </div>
+</div>
+
+
